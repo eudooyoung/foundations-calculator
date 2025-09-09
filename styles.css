@@ -49,5 +49,16 @@ li {
   font-weight: 500;
   font-size: 30px;
   color: rgb(88, 21, 21);
-  
+}
+
+.operator.execute {
+  background: green;
+  color: white;
+  border: none;
+}
+
+.operator.clear {
+  background: red;
+  color: rgb(255, 229, 181);
+  border: none;
 }

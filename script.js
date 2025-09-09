@@ -15,10 +15,10 @@ function divide(a, b) {
 }
 
 function clear() {
-  resultContainer.textContent = "";
   num1 = "";
   num2 = "";
   operator = "";
+  resultContainer.textContent = "";
 }
 
 function operate(num1, num2, operator) {
@@ -45,33 +45,33 @@ const calculatorContainer = document.querySelector(".calculator-container");
 const resultContainer = document.querySelector(".result-container");
 const buttons = document.querySelectorAll("button");
 const clearButton = document.querySelector(".operator.clear");
-const executeButton = document.querySelector(".operator.execute");
 
 let num1;
 let num2;
 let operator;
 /**
- * i) Check if an input is numeric.
- * ii) Populate the display with input.
- *
+ * i) Populate the display with input values.
+ * ii) If an operator is provided, store the current display in num1 and
+ *    input in operator.
  */
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     let input = button.textContent;
-    input = Number(input) || Number(input) === 0 ? Number(input) : input;
+    // input = Number(input) || Number(input) === 0 ? Number(input) : input;
     resultContainer.textContent += input;
     let display = resultContainer.textContent;
+
+    if (input === "=") {
+      let arr = display.split("");
+      let operatorIdx = arr.findIndex((item) => !Number(item));
+      num1 = Number(display.slice(0, operatorIdx));
+      operator = display.at(operatorIdx);
+      num2 = Number(display.slice(operatorIdx + 1, -1));
+      resultContainer.textContent = operate(num1, num2, operator);
+    }
   });
 });
 
 clearButton.addEventListener("click", () => {
   clear();
-});
-
-executeButton.addEventListener("click", () => {
-  if (operator) {
-    let result = operate(Number(num1), Number(num2), operator);
-    console.log(result);
-    resultContainer.textContent = result;
-  }
 });
