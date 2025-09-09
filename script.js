@@ -51,34 +51,23 @@ let num1;
 let num2;
 let operator;
 /**
- * i) If input is number, then update num1 with current display.
- * ii) If input is NaN, and the previous input is number,
- *   then update operator with input.
- * iii) If input is number and operator has been assigned, then the input after
- *   operator becomes num2.
+ * i) Check if an input is numeric.
+ * ii) Populate the display with input.
+ *
  */
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     let input = button.textContent;
+    input = Number(input) || Number(input) === 0 ? Number(input) : input;
     resultContainer.textContent += input;
     let display = resultContainer.textContent;
-    if (Number(input) && !operator) {
-      num1 = display;
-      console.log(`current num1: ${num1}`);
-    } else if (!Number(input) && input !== "=" && input !== "C") {
-      operator = input;
-      console.log(`current operator: ${operator}`);
-      resultContainer.textContent = "";
-    } else if (Number(input) && operator && num1) {
-      num2 = display;
-      console.log(`current num2: ${num2}`);
-    }
   });
 });
 
 clearButton.addEventListener("click", () => {
   clear();
 });
+
 executeButton.addEventListener("click", () => {
   if (operator) {
     let result = operate(Number(num1), Number(num2), operator);
