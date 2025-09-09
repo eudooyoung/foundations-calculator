@@ -46,28 +46,31 @@ const resultContainer = document.querySelector(".result-container");
 const buttons = document.querySelectorAll("button");
 const clearButton = document.querySelector(".operator.clear");
 
+const operators = ["+", "-", "×", "÷"];
 let num1;
 let num2;
 let operator;
 /**
  * i) Populate the display with input values.
- * ii) If an operator is provided, store the current display in num1 and
- *    input in operator.
+ * ii)
  */
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     let input = button.textContent;
-    // input = Number(input) || Number(input) === 0 ? Number(input) : input;
     resultContainer.textContent += input;
     let display = resultContainer.textContent;
+    let arr = display.split("");
+    let operatorIdx = arr.findIndex((item) => operators.includes(item));
+    let secondIdx = arr.findLastIndex((item) => operators.includes(item));
 
     if (input === "=") {
-      let arr = display.split("");
-      let operatorIdx = arr.findIndex((item) => !Number(item));
       num1 = Number(display.slice(0, operatorIdx));
       operator = display.at(operatorIdx);
       num2 = Number(display.slice(operatorIdx + 1, -1));
       resultContainer.textContent = operate(num1, num2, operator);
+    } else if (operators.includes(input)) {
+      let arr = display.split("");
+      arr.findIndex((item) => operators.includes(item));
     }
   });
 });
