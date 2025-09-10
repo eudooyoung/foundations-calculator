@@ -62,3 +62,9 @@ li {
   color: rgb(255, 229, 181);
   border: none;
 }
+
+.operator.backspace {
+  background: rgb(255, 109, 56);
+  color: rgb(255, 241, 216);
+  border: none;
+}
