@@ -1,3 +1,3 @@
 This is a project in the odin project foundation course.
 
-[text](https://eudooyoung.github.io/foundations-calculator/)
+Check the result [here](https://eudooyoung.github.io/foundations-calculator/)
